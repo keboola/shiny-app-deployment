@@ -4,7 +4,7 @@ library('devtools')
 write("Installing shinyapps package",stderr())
 
 # install other necessary stuff from github
-devtools::install_github("rstudio/rsconnect", ref = "master")
+devtools::install_github("rstudio/shinyapps", ref = "master")
 
 # get the command line arguments
 args <- commandArgs(trailingOnly = TRUE)
@@ -17,13 +17,13 @@ secret <- args[2]
 
 write("Got Token and Secret",stderr())
 
-library(rsconnect)
+library(shinyapps)
 
 # now we need to hook up with our shinyappsio account
-#shinyapps::setAccountInfo(name='keboola', token=token, secret=secret)
+shinyapps::setAccountInfo(name='keboola', token=token, secret=secret)
 
 write("Account Info Set",stderr())
 
 # cross fingers, and deploy (We are assuming that we're in the app home dir
-#shinyapps::deployApp(appDir="/home/app")
+shinyapps::deployApp(appDir="/home/app")
 
