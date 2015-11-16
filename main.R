@@ -17,6 +17,11 @@ secret <- args[2]
 
 write("Got Token and Secret", stderr())
 
+# set cran mirror location
+r <- getOption("repos")
+r["CRAN"] <- "http://cran.rstudio.com"
+options(repos = r)
+
 library(shinyapps)
 
 # now we need to hook up with our shinyappsio account
