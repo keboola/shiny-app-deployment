@@ -16,6 +16,9 @@ secret <- args[2]
 # now we need to hook up with our shinyappsio account
 shinyapps::setAccountInfo(name='keboola', token=token, secret=secret)
 
+# workaround for POC
+setwd("/home/app")
+
 # cross fingers, and deploy (We are assuming that we're in the app home dir
 shinyapps::deployApp()
 
