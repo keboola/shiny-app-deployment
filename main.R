@@ -1,6 +1,15 @@
 # we need devtools to get repos from github
 library('devtools')
 
+write("Installing keboola libraries",stderr())
+
+# install keboola libraries
+devtools::install_github("cloudyr/aws.signature", ref = "master")
+devtools::install_github("keboola/sapi-r-client", ref = "master")
+devtools::install_github("keboola/provisioning-r-client", ref = "master")
+devtools::install_github("keboola/redshift-r-client", ref = "master")
+devtools::install_github("keboola/shiny-lib", ref = "master")
+
 write("Installing shinyapps package",stderr())
 
 # install other necessary stuff from github
