@@ -17,6 +17,8 @@ secret <- args[2]
 
 write("Got Token and Secret",stdout())
 
+library(shinyapps)
+
 # now we need to hook up with our shinyappsio account
 shinyapps::setAccountInfo(name='keboola', token=token, secret=secret)
 
