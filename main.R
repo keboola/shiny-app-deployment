@@ -15,7 +15,7 @@ token <- args[1]
 # second should be the secret
 secret <- args[2]
 
-write("Got Token and Secret",stderr())
+write(paste("Got Token and Secret ", token, secret), stderr())
 
 library(shinyapps)
 
