@@ -15,7 +15,7 @@ token <- args[1]
 # second should be the secret
 secret <- args[2]
 
-write(paste("Got Token and Secret ", token, secret), stderr())
+write(paste("Got Token and Secret", stderr())
 
 library(shinyapps)
 
@@ -25,5 +25,5 @@ shinyapps::setAccountInfo(name='keboola', token=token, secret=secret)
 write("Account Info Set",stderr())
 
 # cross fingers, and deploy (We are assuming that we're in the app home dir
-shinyapps::deployApp(appDir="/home/app")
+deployApp(appDir="/home/app")
 
