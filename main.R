@@ -13,8 +13,12 @@ token <- args[1]
 # second should be the secret
 secret <- args[2]
 
+print("Got Token and Secret")
+
 # now we need to hook up with our shinyappsio account
 shinyapps::setAccountInfo(name='keboola', token=token, secret=secret)
+
+print("Account Info Set")
 
 # cross fingers, and deploy (We are assuming that we're in the app home dir
 shinyapps::deployApp(appDir="/home/app")
