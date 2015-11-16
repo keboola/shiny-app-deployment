@@ -25,5 +25,5 @@ shinyapps::setAccountInfo(name='keboola', token=token, secret=secret)
 write("Account Info Set",stderr())
 
 # cross fingers, and deploy (We are assuming that we're in the app home dir
-deployApp(appDir="/home/app")
+deployApp("/home/app", appName="Test")
 
