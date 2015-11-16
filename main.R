@@ -24,6 +24,9 @@ token <- args[1]
 # second should be the secret
 secret <- args[2]
 
+# Name of the application
+appName <- args[3]
+
 write("Got Token and Secret", stderr())
 
 # set cran mirror location
@@ -39,5 +42,5 @@ shinyapps::setAccountInfo(name='keboola', token=token, secret=secret)
 write("Account Info Set",stderr())
 
 # cross fingers, and deploy (We are assuming that we're in the app home dir
-deployApp("/home/app", appName="Test")
+deployApp("/home/app", appName=appName)
 
