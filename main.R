@@ -18,14 +18,26 @@ devtools::install_github("rstudio/shinyapps", ref = "master")
 # get the command line arguments
 args <- commandArgs(trailingOnly = TRUE)
 
+# What should this thing do?
+command <- arg[1]
+
+# valid commands: deploy, archive [delete will be available in a future version]
+validCommands <- c("deploy", "archive")
+
+# make sure the given command is valid
+if (!(command %in% validCommands)) {
+    stop(paste("I'm sorry, but I don't know how to", command,". I only know how to", paste(validCommands,sep="and")))
+}
+
 # first argument should be token
-token <- args[1]
+token <- args[2]
 
 # second should be the secret
-secret <- args[2]
+secret <- args[3]
 
 # Name of the application
-appName <- args[3]
+appName <- args[4]
+
 
 write("Got Token and Secret", stderr())
 
