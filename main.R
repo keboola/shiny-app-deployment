@@ -55,6 +55,11 @@ write("Account Info Set",stderr())
 
 write(paste("attempting to deploy app", appName), stderr())
 
-# cross fingers, and deploy (We are assuming that we're in the app home dir
-deployApp(appDir="/home/app", appName=appName)
-
+if (command == "deploy") {
+    # cross fingers, and deploy (We are assuming that we're in the app home dir
+    deployApp(appDir="/home/app", appName=appName)
+} else if (command == "archive") {
+    terminateApp(appName=appName)
+} else {
+    stop(paste("You shouldn't be here. I thought I said that I didn't know how to", command))
+}
