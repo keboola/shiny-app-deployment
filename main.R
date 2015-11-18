@@ -19,7 +19,7 @@ devtools::install_github("rstudio/shinyapps", ref = "master")
 args <- commandArgs(trailingOnly = TRUE)
 
 # What should this thing do?
-command <- arg[1]
+command <- args[1]
 
 # valid commands: deploy, archive [delete will be available in a future version]
 validCommands <- c("deploy", "archive")
