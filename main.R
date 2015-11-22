@@ -7,6 +7,9 @@ options(repos = r)
 
 # we need devtools to get repos from github
 library('devtools')
+# we use the optparse package for command line options parsing
+install.packages("optparse",verbose=FALSE,quiet=TRUE)
+library(optparse)
 
 write("Installing keboola libraries",stderr())
 
@@ -23,7 +26,7 @@ write("Installing shinyapps package",stderr())
 devtools::install_github("rstudio/shinyapps", ref = "master")
 
 library(shinyapps)
-library(optparse)
+
 
 option_list <- list(
     make_option(c("-v", "--verbose"), action="store_true", default=TRUE,
