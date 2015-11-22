@@ -52,6 +52,8 @@ print(opt)
 allArgs <- c("help","verbose","command","account","appName",
 			 "token","secret","repository","username",
 			 "password","cranPackages","githubPackages")
+
+if (opt$command == "") opt$command <- "deploy"
 if (opt$command == "deploy") {
 	requiredArgs <- c("appName","token","secret","repository")
 } else if (opt$command == "archive") {
@@ -80,7 +82,7 @@ if (opt$command == "archive") {
 } else {
 	# define a helper function for trimming strings (is there no base r function for this?)
 	trim <- function (x) gsub("^\\s+|\\s+$", "", x)
-	if (!is.null(opt$cranPackages)) {
+	if (!is.null(opt$cranPackages) && opt$cranPackages != "") {
 		# we need to install any packages that we've been told to
 		cranPackages <- trim(unlist(strsplit(opt$cranPackages,",")))
 		print(cranPackages)
@@ -89,7 +91,7 @@ if (opt$command == "archive") {
 			install.packages(x, verbose=FALSE, quiet=TRUE)
 		})
 	} else print("No cran packages to install")
-	if (!is.null(opt$githubPackages)){
+	if (!is.null(opt$githubPackages) && opt$githubPackages != ""){
 		# we need to install any github packages that we've been told to.
 		githubPackages <- trim(unlist(strsplit(opt$githubPackages,",")))
 		print(githubPackages)
