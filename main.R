@@ -38,7 +38,6 @@ option_list <- list(
     make_option(c("-n", "--appName"), help = "The name of the application to be deployed"),
     make_option(c("-t", "--token"), help = "The token to use for app deployment"),
     make_option(c("-s", "--secret"), help = "The secret associated with the token"),
-    #make_option(c("-r", "--repository"), help = "The repository url of the application"),
 	make_option(c("-u", "--username"), help = "The username for the repository if private"),
 	make_option(c("-p", "--password"), help = "The user's password for the repository if private"),
 	make_option(c("-c", "--cranPackages"), help = "list of cran packages to install"),
@@ -53,17 +52,12 @@ print(opt)
 
 
 allArgs <- c("help","verbose","command","account","appName",
-			 "token","secret","repository","username",
+			 "token","secret","username",
 			 "password","cranPackages","githubPackages")
 
 if (opt$command == "") opt$command <- "deploy"
-if (opt$command == "deploy") {
-	requiredArgs <- c("appName","token","secret","repository")
-} else if (opt$command == "archive") {
-	requiredArgs <- c("appName","token","secret","repository")
-} else {
-	stop("Sorry, the option -d or --command must be either 'deploy' or 'archive'")
-}
+
+requiredArgs <- c("appName","token","secret")
 
 missingArgs <- requiredArgs[!(requiredArgs %in% names(opt))]
 unknownArgs <- names(opt)[!(names(opt) %in% allArgs)]
