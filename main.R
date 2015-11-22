@@ -59,7 +59,7 @@ if (opt$command == "deploy") {
 } else if (opt$command == "archive") {
 	requiredArgs <- c("appName","token","secret","repository")
 } else {
-	stop("sorry, the option -c or --command must be either 'deploy' or 'archive'")
+	stop("Sorry, the option -d or --command must be either 'deploy' or 'archive'")
 }
 
 missingArgs <- requiredArgs[!(requiredArgs %in% names(opt))]
