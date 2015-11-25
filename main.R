@@ -14,16 +14,16 @@ library(optparse)
 write("Installing keboola libraries",stderr())
 
 # install keboola libraries
-devtools::install_github("cloudyr/aws.signature", ref = "master")
-devtools::install_github("keboola/sapi-r-client", ref = "master")
-devtools::install_github("keboola/provisioning-r-client", ref = "master")
-devtools::install_github("keboola/redshift-r-client", ref = "master")
-devtools::install_github("keboola/shiny-lib", ref = "master")
+devtools::install_github("cloudyr/aws.signature", ref = "master", quiet = TRUE)
+devtools::install_github("keboola/sapi-r-client", ref = "master", quiet = TRUE)
+devtools::install_github("keboola/provisioning-r-client", ref = "master", quiet = TRUE)
+devtools::install_github("keboola/redshift-r-client", ref = "master", quiet = TRUE)
+devtools::install_github("keboola/shiny-lib", ref = "master", quiet = TRUE)
 
 write("Installing shinyapps package",stderr())
 
 # install other necessary stuff from github
-devtools::install_github("rstudio/shinyapps", ref = "master")
+devtools::install_github("rstudio/shinyapps", ref = "master", quiet = TRUE)
 
 library(shinyapps)
 
@@ -40,8 +40,8 @@ option_list <- list(
     make_option(c("-s", "--secret"), help = "The secret associated with the token"),
 	make_option(c("-u", "--username"), help = "The username for the repository if private"),
 	make_option(c("-p", "--password"), help = "The user's password for the repository if private"),
-	make_option(c("-c", "--cranPackages"), help = "list of cran packages to install"),
-	make_option(c("-g", "--githubPackages"), help = "list of github packages to install")
+	make_option(c("-c", "--cranPackages"), help = "list of cran packages to install", default=""),
+	make_option(c("-g", "--githubPackages"), help = "list of github packages to install", default="")
 )
 
 opt <- parse_args(OptionParser(option_list=option_list))
@@ -94,7 +94,7 @@ if (opt$command == "archive") {
 		print(githubPackages)
 		lapply(githubPackages, function(x){
 			print(paste("Installing package",x,"from github."))
-			devtools::install_github(x)
+			devtools::install_github(x, quiet = TRUE)
 		})
 	} else print("No github packages to install")
 	# and deploy the app
