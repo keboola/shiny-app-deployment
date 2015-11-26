@@ -11,16 +11,21 @@ library('devtools')
 install.packages("optparse",verbose=FALSE,quiet=TRUE)
 library(optparse)
 
-write("Installing keboola libraries",stderr())
+print("Installing keboola libraries")
 
 # install keboola libraries
 devtools::install_github("cloudyr/aws.signature", ref = "master", quiet = TRUE)
+print("aws.signature installed")
 devtools::install_github("keboola/sapi-r-client", ref = "master", quiet = TRUE)
+print("sapi-r-client installed")
 devtools::install_github("keboola/provisioning-r-client", ref = "master", quiet = TRUE)
+print("provisioning-r-client installed")
 devtools::install_github("keboola/redshift-r-client", ref = "master", quiet = TRUE)
+print("redshift-r-client installed")
 devtools::install_github("keboola/shiny-lib", ref = "refactor", quiet = TRUE)
+print("shiny-lib refactor branch installed")
 
-write("Installing shinyapps package",stderr())
+print("Installing shinyapps package")
 
 # install other necessary stuff from github
 devtools::install_github("rstudio/shinyapps", ref = "master", quiet = TRUE)
