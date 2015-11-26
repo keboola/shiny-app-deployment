@@ -18,7 +18,7 @@ devtools::install_github("cloudyr/aws.signature", ref = "master", quiet = TRUE)
 devtools::install_github("keboola/sapi-r-client", ref = "master", quiet = TRUE)
 devtools::install_github("keboola/provisioning-r-client", ref = "master", quiet = TRUE)
 devtools::install_github("keboola/redshift-r-client", ref = "master", quiet = TRUE)
-devtools::install_github("keboola/shiny-lib", ref = "master", quiet = TRUE)
+devtools::install_github("keboola/shiny-lib", ref = "refactor", quiet = TRUE)
 
 write("Installing shinyapps package",stderr())
 
