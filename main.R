@@ -1,4 +1,3 @@
-options(echo = TRUE)
 
 # set cran mirror location
 r <- getOption("repos")
@@ -6,32 +5,13 @@ r["CRAN"] <- "http://cran.rstudio.com"
 options(repos = r)
 
 # we need devtools to get repos from github
-library('devtools')
+library(devtools)
 # we use the optparse package for command line options parsing
-install.packages("optparse",verbose=FALSE,quiet=TRUE)
 library(optparse)
-
-print("Installing keboola libraries")
-
-# install keboola libraries
-devtools::install_github("cloudyr/aws.signature", ref = "master", quiet = TRUE)
-print("aws.signature installed")
-devtools::install_github("keboola/sapi-r-client", ref = "master", quiet = TRUE)
-print("sapi-r-client installed")
-devtools::install_github("keboola/provisioning-r-client", ref = "master", quiet = TRUE)
-print("provisioning-r-client installed")
-devtools::install_github("keboola/redshift-r-client", ref = "master", quiet = TRUE)
-print("redshift-r-client installed")
-devtools::install_github("keboola/shiny-lib", ref = "refactor", quiet = TRUE)
-print("shiny-lib refactor branch installed")
-
-print("Installing shinyapps package")
-
-# install other necessary stuff from github
-devtools::install_github("rstudio/shinyapps", ref = "master", quiet = TRUE)
-
+# we need the shinyapps package to do its magic
 library(shinyapps)
 
+print("Loaded required libraries")
 
 option_list <- list(
     make_option(c("-v", "--verbose"), action="store_true", default=TRUE,
@@ -80,6 +60,7 @@ shinyapps::setAccountInfo(name='keboola', token=opt$token, secret=opt$secret)
 
 if (opt$command == "archive") {
 	# archive the application
+	print(paste("Terminating application",opt$appName))
 	terminateApp(appName=opt$appName)
 } else {
 	# define a helper function for trimming strings (is there no base r function for this?)
@@ -103,7 +84,7 @@ if (opt$command == "archive") {
 		})
 	} else print("No github packages to install")
 	# and deploy the app
-	deployApp(appDir="/home/app", appName=opt$appName)	
+	deployApp(appDir="/home/app", appName=opt$appName)
 }
 
 # end
