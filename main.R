@@ -31,11 +31,6 @@ option_list <- list(
 
 opt <- parse_args(OptionParser(option_list=option_list))
 
-print("received options")
-
-print(opt)
-
-
 allArgs <- c("help","verbose","command","account","appName",
 			 "token","secret","username",
 			 "password","cranPackages","githubPackages")
@@ -62,6 +57,7 @@ if (opt$command == "archive") {
 	# archive the application
 	print(paste("Terminating application",opt$appName))
 	terminateApp(appName=opt$appName)
+	print("Application terminated")
 } else {
 	# define a helper function for trimming strings (is there no base r function for this?)
 	trim <- function (x) gsub("^\\s+|\\s+$", "", x)
@@ -83,8 +79,19 @@ if (opt$command == "archive") {
 			devtools::install_github(x, quiet = TRUE)
 		})
 	} else print("No github packages to install")
-	# and deploy the app
-	deployApp(appDir="/home/app", appName=opt$appName)
+	if (!interactive()) {
+		con <- textConnection("deploymentMessages", open = "w", local = TRUE)
+		sink(con, type = c("output", "message"))
+	}
+	tryCatch({
+		# and deploy the app
+		deployApp(appDir="/home/app", appName=opt$appName)
+	}, finally = {
+		if (!interactive()) {
+			sink(NULL, type = c("output", "message"))
+            write(deploymentMessages, stdout())
+		}
+	})
 }
 
 # end
