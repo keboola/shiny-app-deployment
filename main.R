@@ -8,8 +8,8 @@ options(repos = r)
 library(devtools)
 # we use the optparse package for command line options parsing
 library(optparse)
-# we need the shinyapps package to do its magic
-library(shinyapps)
+# we need the rsconnect package to do its magic
+library(rsconnect)
 
 print("Loaded required libraries")
 
@@ -50,8 +50,8 @@ if (length(missingArgs) > 0) {
 	stop(paste("Sorry, the following required options are missing:",paste(missingArgs,collapse=", ")))
 }
 	
-# call into shinyapps with keboola account credentials
-shinyapps::setAccountInfo(name='keboola', token=opt$token, secret=opt$secret)
+# call into rsconnect with keboola account credentials
+rsconnect::setAccountInfo(name='keboola', token=opt$token, secret=opt$secret)
 
 if (opt$command == "archive") {
 	# archive the application
